@@ -87,8 +87,12 @@ void setNumberCores(int cores) {
 }
 
 ParallelData* setupParallelData() {
+
+  //TODO BEFORE MERGE: dont just hack this, fix properly!
+  #ifndef LIBMINION
   // make sure we don't end up with too many children
   signal(SIGCHLD, SIG_IGN);
+  #endif
 
   // Setup a pipe so parent can track if children are alive
   int ret = pipe(childTrackingPipe);
